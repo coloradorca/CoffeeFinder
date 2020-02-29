@@ -1,25 +1,24 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
   ScrollView,
+  ImageBackground,
+  View,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
-import businessess from './sampledata/businessess.js';
-import SearchBar from './Components/SearchBar.js';
-import Shops from './Components/Shops.js';
+import businessess from '../sampledata/businessess.js';
 
-export default function App() {
+export default function Shops(props) {
+  const onPress = (e) => {
+    console.log(e);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Coffee Finder</Text>
-      <SearchBar />
-      <Shops />
-      {/* <ScrollView>
-        {businessess.businesses.map((e, id) => {
-          return (
+    <ScrollView>
+      {businessess.businesses.map((e, id) => {
+        return (
+          <TouchableOpacity onPress={(event) => onPress(e.name)}>
             <ImageBackground
               source={{ uri: `${e.image_url}` }}
               key={id}
@@ -39,10 +38,10 @@ export default function App() {
                 </Text>
               </View>
             </ImageBackground>
-          );
-        })}
-      </ScrollView> */}
-    </View>
+          </TouchableOpacity>
+        );
+      })}
+    </ScrollView>
   );
 }
 
@@ -63,6 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   image: {
+    borderRadius: 30,
     width: 300,
     height: 100,
     margin: 10,
@@ -74,5 +74,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontSize: 20,
     fontWeight: 'bold',
+    textShadowColor: 'purple',
+    textShadowRadius: 20,
   },
 });
