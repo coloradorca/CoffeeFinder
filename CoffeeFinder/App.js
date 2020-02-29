@@ -17,31 +17,6 @@ export default function App() {
       <Text style={styles.header}>Coffee Finder</Text>
       <SearchBar />
       <Shops />
-      {/* <ScrollView>
-        {businessess.businesses.map((e, id) => {
-          return (
-            <ImageBackground
-              source={{ uri: `${e.image_url}` }}
-              key={id}
-              style={styles.image}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'stretch',
-                  backgroundColor: 'rgba(0,0,0,0,.5)',
-                }}>
-                <Text
-                  style={[styles.inlay, { backgroundColor: 'transparent' }]}
-                  key={id}>
-                  {e.name}
-                </Text>
-              </View>
-            </ImageBackground>
-          );
-        })}
-      </ScrollView> */}
     </View>
   );
 }
