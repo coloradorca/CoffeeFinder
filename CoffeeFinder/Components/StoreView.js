@@ -19,6 +19,10 @@ export default function StoreView({ route }) {
           source={route.params.shop.image_url}
         />
       </View>
+      <Text>{route.params.shop.display_phone}</Text>
+      <Text>{route.params.shop.location.display_address}</Text>
+      <Text>{route.params.shop.coordinates.latitude}</Text>
+      <Text>{route.params.shop.coordinates.longitude}</Text>
       <View>{/* <MapView /> */}</View>
     </View>
   );
