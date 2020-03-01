@@ -9,38 +9,38 @@ import {
 } from 'react-native';
 import businessess from '../sampledata/businessess.js';
 
-export default function Shops(props) {
+export default function Shops({ navigation }) {
   const onPress = (e) => {
-    console.log(e);
+    console.log(navigation);
   };
 
   return (
     <ScrollView>
-      {businessess.businesses.map((e, id) => {
-        return (
-          <TouchableOpacity onPress={(event) => onPress(e.name)}>
-            <ImageBackground
-              source={{ uri: `${e.image_url}` }}
-              key={id}
-              style={styles.image}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'stretch',
-                  backgroundColor: 'rgba(0,0,0,0,.5)',
-                }}>
-                <Text
-                  style={[styles.inlay, { backgroundColor: 'transparent' }]}
-                  key={id}>
-                  {e.name}
-                </Text>
-              </View>
-            </ImageBackground>
-          </TouchableOpacity>
-        );
-      })}
+      {businessess.businesses.map((e, id) => (
+        <TouchableOpacity
+          key={id}
+          onPress={() => navigation.navigate('StoreView', { name: e })}>
+          <ImageBackground
+            source={{ uri: `${e.image_url}` }}
+            key={id}
+            style={styles.image}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'stretch',
+                backgroundColor: 'rgba(0,0,0,0,.5)',
+              }}>
+              <Text
+                style={[styles.inlay, { backgroundColor: 'transparent' }]}
+                key={id}>
+                {e.name}
+              </Text>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   );
 }
