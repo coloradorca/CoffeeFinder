@@ -19,7 +19,7 @@ export default function Shops({ navigation }) {
       {businessess.businesses.map((e, id) => (
         <TouchableOpacity
           key={id}
-          onPress={() => navigation.navigate('StoreView', { name: e })}>
+          onPress={() => navigation.navigate('StoreView', { shop: e })}>
           <ImageBackground
             source={{ uri: `${e.image_url}` }}
             key={id}

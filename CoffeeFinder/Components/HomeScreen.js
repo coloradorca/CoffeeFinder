@@ -13,7 +13,6 @@ import Shops from './Shops.js';
 import StoreView from './StoreView.js';
 
 export default function HomeScreen({ navigation }) {
-  console.log('naviation in homescreen', navigation);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
