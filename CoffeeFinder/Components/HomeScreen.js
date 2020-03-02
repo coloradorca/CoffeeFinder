@@ -13,14 +13,33 @@ import Shops from './Shops.js';
 import StoreView from './StoreView.js';
 
 export default function HomeScreen({ navigation }) {
+  const pie = 'pie';
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
       <SearchBar />
-      <Shops navigation={navigation} />
+      <Shops pie={pie} navigation={navigation} />
     </View>
   );
 }
+
+// export default class HomeScreen extends React.Component({ navigation }) {
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
+//   render() {
+//     console.log(this.navigation);
+//     // const { navigation } = this.props;
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.header}>Coffee Finder</Text>
+//         <SearchBar />
+//         <Shops navigation={this.navigation} />
+//       </View>
+//     );
+//   }
+// }
 
 const styles = StyleSheet.create({
   container: {

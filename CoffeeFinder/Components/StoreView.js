@@ -8,9 +8,13 @@ import {
   Dimensions,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import GestureRecognizer, {
+  swipeDirections,
+} from 'react-native-swipe-gestures';
 
-export default function StoreView({ route }) {
-  console.log(route.params.shop);
+export default function StoreView({ route }, { pie }) {
+  console.log(pie);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.nameStyle}>{route.params.shop.name}</Text>

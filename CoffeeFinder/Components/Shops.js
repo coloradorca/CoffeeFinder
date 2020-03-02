@@ -10,10 +10,7 @@ import {
 import businessess from '../sampledata/businessess.js';
 
 export default function Shops({ navigation }) {
-  const onPress = (e) => {
-    console.log(navigation);
-  };
-
+  console.log('hi there');
   return (
     <ScrollView>
       {businessess.businesses.map((e, id) => (
