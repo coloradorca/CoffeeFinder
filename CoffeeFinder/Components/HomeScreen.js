@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,6 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-import businessess from '../sampledata/businessess.js';
 import SearchBar from './SearchBar.js';
 import Shops from './Shops.js';
 import StoreView from './StoreView.js';
@@ -15,43 +14,46 @@ import axios from 'axios';
 import yelpKey from '../keys.js';
 
 export default function HomeScreen({ navigation }) {
-  axios
-    .get(
-      'https://api.yelp.com/v3/businesses/search?location=sanfrancisco&categories=coffee&tea',
-      {
-        headers: {
-          Authorization: yelpKey,
+  const [stores, setStores] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentLocation, updateLocation] = useState('Lyons');
+
+  const changeLocation = (event) => {
+    // updateLocation(event);
+    console.log(event);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const fetch = await axios.get(
+        `https://api.yelp.com/v3/businesses/search?location=${currentLocation}&categories=coffee&tea`,
+        {
+          headers: {
+            Authorization: yelpKey,
+          },
         },
-      },
-    )
-    .then((res) => console.log(res.data.businesses))
-    .catch((e) => console.log(e));
-  return (
+      );
+      const response = await fetch;
+      setStores(response.data.businesses);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, [currentLocation]);
+  console.log('stores in HomeScreen', stores);
+
+  return isLoading ? (
+    <View style={styles.container}>
+      <Text style={styles.header}>Loading</Text>
+    </View>
+  ) : (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
-      <SearchBar />
-      <Shops businesses={businessess} navigation={navigation} />
+      <SearchBar changeLocation={changeLocation} />
+      <Shops stores={stores} navigation={navigation} />
     </View>
   );
 }
-
-// export default class HomeScreen extends React.Component({ navigation }) {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
-//   render() {
-//     console.log(this.navigation);
-//     // const { navigation } = this.props;
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.header}>Coffee Finder</Text>
-//         <SearchBar />
-//         <Shops navigation={this.navigation} />
-//       </View>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   container: {

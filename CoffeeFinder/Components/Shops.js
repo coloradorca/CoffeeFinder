@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 
 export default function Shops(props) {
-  console.log(props);
+  console.log('stores in shops component', props.stores);
   return (
     <ScrollView>
-      {props.businesses.businesses.map((e, id) => (
+      {props.stores.map((e, id) => (
         <TouchableOpacity
           key={id}
           onPress={() => props.navigation.navigate('StoreView', { shop: e })}>

@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     color: 'purple',
   },
   mapStyle: {
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
-    width: 600,
-    height: 300,
+    width: Dimensions.get('window').width / 1,
+    height: Dimensions.get('window').height / 2.2,
+    // width: 400,
+    // height: 200,
   },
   imageStyle: {
-    height: 200,
-    width: 200,
+    height: 100,
+    width: 100,
   },
   textStyle: {
     textAlign: 'center',
