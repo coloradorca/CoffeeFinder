@@ -25,13 +25,13 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#F5FCFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
   header: {
     marginTop: 30,
-    backgroundColor: 'black',
+    backgroundColor: '#F5FCFF',
     alignItems: 'center',
     justifyContent: 'center',
     color: 'purple',
