@@ -1,7 +1,5 @@
 COFFEE FINDER
 
-here it is.... my MVP
+This basic mobile app will allow a user to enter a location, and search for businesses that serve coffee
 
-Using expo...
-
-Built using React Native
+Project build initiated using expo for React Native

@@ -21,9 +21,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-//example api call
-
-// https://api.yelp.com/v3/businesses/search?location=san-francisco&categories=coffee
-
-// https://api.yelp.com/v3/businesses/search?location=boulder&categories=coffee&tea

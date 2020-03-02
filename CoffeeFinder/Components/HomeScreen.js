@@ -13,12 +13,11 @@ import Shops from './Shops.js';
 import StoreView from './StoreView.js';
 
 export default function HomeScreen({ navigation }) {
-  const pie = 'pie';
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
       <SearchBar />
-      <Shops pie={pie} navigation={navigation} />
+      <Shops navigation={navigation} />
     </View>
   );
 }

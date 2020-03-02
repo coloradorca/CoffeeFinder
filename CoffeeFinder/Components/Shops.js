@@ -8,9 +8,22 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import businessess from '../sampledata/businessess.js';
+import axios from 'axios';
+import yelpKey from '../keys.js';
 
 export default function Shops({ navigation }) {
   console.log('hi there');
+  axios
+    .get(
+      'https://api.yelp.com/v3/businesses/search?location=boulder&categories=coffee&tea',
+      {
+        headers: {
+          Authorization: yelpKey,
+        },
+      },
+    )
+    .then((res) => console.log(res.data.businesses))
+    .catch((e) => console.log(e));
   return (
     <ScrollView>
       {businessess.businesses.map((e, id) => (
@@ -41,6 +54,12 @@ export default function Shops({ navigation }) {
     </ScrollView>
   );
 }
+
+//example api call
+
+// https://api.yelp.com/v3/businesses/search?location=san-francisco&categories=coffee
+
+// https://api.yelp.com/v3/businesses/search?location=boulder&categories=coffee&tea
 
 const styles = StyleSheet.create({
   container: {
