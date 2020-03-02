@@ -11,13 +11,26 @@ import businessess from '../sampledata/businessess.js';
 import SearchBar from './SearchBar.js';
 import Shops from './Shops.js';
 import StoreView from './StoreView.js';
+import axios from 'axios';
+import yelpKey from '../keys.js';
 
 export default function HomeScreen({ navigation }) {
+  axios
+    .get(
+      'https://api.yelp.com/v3/businesses/search?location=sanfrancisco&categories=coffee&tea',
+      {
+        headers: {
+          Authorization: yelpKey,
+        },
+      },
+    )
+    .then((res) => console.log(res.data.businesses))
+    .catch((e) => console.log(e));
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
       <SearchBar />
-      <Shops navigation={navigation} />
+      <Shops businesses={businessess} navigation={navigation} />
     </View>
   );
 }

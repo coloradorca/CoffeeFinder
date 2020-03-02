@@ -7,29 +7,15 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import businessess from '../sampledata/businessess.js';
-import axios from 'axios';
-import yelpKey from '../keys.js';
 
-export default function Shops({ navigation }) {
-  console.log('hi there');
-  axios
-    .get(
-      'https://api.yelp.com/v3/businesses/search?location=boulder&categories=coffee&tea',
-      {
-        headers: {
-          Authorization: yelpKey,
-        },
-      },
-    )
-    .then((res) => console.log(res.data.businesses))
-    .catch((e) => console.log(e));
+export default function Shops(props) {
+  console.log(props);
   return (
     <ScrollView>
-      {businessess.businesses.map((e, id) => (
+      {props.businesses.businesses.map((e, id) => (
         <TouchableOpacity
           key={id}
-          onPress={() => navigation.navigate('StoreView', { shop: e })}>
+          onPress={() => props.navigation.navigate('StoreView', { shop: e })}>
           <ImageBackground
             source={{ uri: `${e.image_url}` }}
             key={id}
@@ -54,12 +40,6 @@ export default function Shops({ navigation }) {
     </ScrollView>
   );
 }
-
-//example api call
-
-// https://api.yelp.com/v3/businesses/search?location=san-francisco&categories=coffee
-
-// https://api.yelp.com/v3/businesses/search?location=boulder&categories=coffee&tea
 
 const styles = StyleSheet.create({
   container: {
