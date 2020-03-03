@@ -14,7 +14,7 @@ export default function Shops(props) {
       {props.stores.map((e, id) => (
         <TouchableOpacity
           key={id}
-          onPress={() => props.navigation.navigate('StoreView', { shop: e })}>
+          onPress={() => props.navigation.navigate('Coffee Shop', { shop: e })}>
           <ImageBackground
             source={{ uri: `${e.image_url}` }}
             key={id}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   storeView: {
-    borderRadius: 30,
+    borderRadius: 20,
   },
   header: {
     marginTop: 30,
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: 'purple',
     fontWeight: 'bold',
-    fontSize: 50,
+    fontSize: 40,
   },
   image: {
+    flex: 1,
     borderRadius: 10,
-    width: 300,
-    height: 100,
+    height: 90,
     margin: 8,
   },
   inlay: {

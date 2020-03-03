@@ -26,7 +26,7 @@ export default function StoreView({ route }) {
     Linking.openURL(phoneNumber);
   };
 
-  const getDirections = async () => {
+  const getDirections = () => {
     function getLocation() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -34,7 +34,7 @@ export default function StoreView({ route }) {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
-          console.log(position.coords);
+
           Linking.openURL(
             `maps://app?saddr=${position.coords.latitude},${position.coords.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
           );
@@ -43,10 +43,9 @@ export default function StoreView({ route }) {
         { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
       );
     }
-
     getLocation();
   };
-  console.log('currentlocation in StoreView', currentLocation);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.nameStyle}>{route.params.shop.name}</Text>

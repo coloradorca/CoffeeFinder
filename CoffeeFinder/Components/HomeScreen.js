@@ -46,14 +46,16 @@ export default function HomeScreen({ navigation }) {
       <ActivityIndicator size='large' color='#0000ff' />
     </View>
   ) : (
-    <View style={styles.container}>
-      <Text style={styles.header}>Coffee Finder</Text>
-      <SearchBar
-        changeLocation={changeLocation}
-        currentLocation={currentLocation}
-      />
-      <Shops stores={stores} navigation={navigation} />
-    </View>
+    <ScrollView>
+      <View style={styles.header}>
+        <Text style={styles.header}>Coffee Finder</Text>
+        <SearchBar
+          changeLocation={changeLocation}
+          currentLocation={currentLocation}
+        />
+        <Shops stores={stores} navigation={navigation} />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -65,25 +67,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    marginTop: 30,
-    backgroundColor: '#F5FCFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'purple',
-    fontWeight: 'bold',
-    fontSize: 50,
-  },
-  image: {
-    width: 300,
-    height: 100,
     margin: 10,
-  },
-  inlay: {
-    textAlign: 'center',
-    color: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 20,
     fontWeight: 'bold',
+    fontSize: 40,
   },
 });
