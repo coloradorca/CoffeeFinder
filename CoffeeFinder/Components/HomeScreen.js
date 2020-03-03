@@ -17,11 +17,10 @@ import yelpKey from '../keys.js';
 export default function HomeScreen({ navigation }) {
   const [stores, setStores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentLocation, updateLocation] = useState('Portland');
+  const [currentLocation, updateLocation] = useState('Seattle');
 
   const changeLocation = (event) => {
     updateLocation(event);
-    // console.log(event);
   };
 
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function HomeScreen({ navigation }) {
     }
     fetchData();
   }, [currentLocation]);
-  console.log('stores in HomeScreen', stores);
 
   return isLoading ? (
     <View style={styles.container}>

@@ -4,14 +4,14 @@ import { TextInput, StyleSheet } from 'react-native';
 export default function SearchBar(props) {
   const [value, onChangeText] = useState(props.currentLocation);
 
-  // console.log('props in Searchbar', props.changeLocation);
-
   return (
     <TextInput
       style={styles.container}
       onChangeText={(text) => onChangeText(text)}
       value={value}
       clearTextOnFocus={true}
+      enablesReturnKeyAutomatically={true}
+      returnKeyType={'go'}
       onSubmitEditing={() => props.changeLocation(value)}
     />
   );
@@ -19,13 +19,15 @@ export default function SearchBar(props) {
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 10,
     backgroundColor: 'white',
-    height: 40,
+    height: 50,
     width: 300,
     borderColor: 'gray',
     borderWidth: 3,
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    fontSize: 20,
   },
 });

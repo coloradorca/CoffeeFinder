@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 
 export default function Shops(props) {
-  console.log('stores in shops component', props.stores);
   return (
-    <ScrollView>
+    <ScrollView style={styles.storeView}>
       {props.stores.map((e, id) => (
         <TouchableOpacity
           key={id}
@@ -19,7 +18,8 @@ export default function Shops(props) {
           <ImageBackground
             source={{ uri: `${e.image_url}` }}
             key={id}
-            style={styles.image}>
+            style={styles.image}
+            imageStyle={{ borderRadius: 10 }}>
             <View
               style={{
                 flex: 1,
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  storeView: {
+    borderRadius: 30,
+  },
   header: {
     marginTop: 30,
     backgroundColor: 'black',
@@ -58,10 +61,10 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   image: {
-    borderRadius: 30,
+    borderRadius: 10,
     width: 300,
     height: 100,
-    margin: 10,
+    margin: 8,
   },
   inlay: {
     textAlign: 'center',

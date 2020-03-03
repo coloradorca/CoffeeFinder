@@ -1,5 +1,12 @@
 COFFEE FINDER
 
-Mobile app that will allow users to enter a location, and search for businesses that serve coffee
+Project build initiated using expo cli
 
-Project build initiated using expo cli for React Native
+Mobile app running on React Native
+
+Users can enter a location and app will search for businesses that serve coffee
+
+On iOS :
+Linking enabled to allow a user to directly call the business
+
+(Using Yelp's API)
