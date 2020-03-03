@@ -17,7 +17,7 @@ import yelpKey from '../keys.js';
 export default function HomeScreen({ navigation }) {
   const [stores, setStores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentLocation, updateLocation] = useState('Seattle');
+  const [currentLocation, updateLocation] = useState('Boulder');
 
   const changeLocation = (event) => {
     updateLocation(event);

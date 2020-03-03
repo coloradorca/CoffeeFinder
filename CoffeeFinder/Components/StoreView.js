@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,6 +15,7 @@ import MapView, { Marker } from 'react-native-maps';
 // } from 'react-native-swipe-gestures';
 
 export default function StoreView({ route }) {
+  const [currentLocation, updateLocation] = useState({});
   const makeCall = () => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
@@ -24,14 +25,28 @@ export default function StoreView({ route }) {
     }
     Linking.openURL(phoneNumber);
   };
+
   const getDirections = () => {
-    var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
+    // async function getLocation() {
+    //   await navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       // console.log(position.coords);
+    //       updateLocation({
+    //         latitude: position.coords.latitude,
+    //         longitude: position.coords.longitude,
+    //       });
+    //     },
+    //     (error) => console.log(error.message),
+    //     { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
+    //   );
+    // }
+    // getLocation();
     Linking.openURL(
-      scheme +
-        `${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
+      `maps://app?saddr=40.0167109,-105.2816441&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
+      // `maps://app?saddr=${currentLocation.latitude},${currentLocation.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
     );
   };
-
+  console.log('currentlocation in StoreView', currentLocation);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.nameStyle}>{route.params.shop.name}</Text>
