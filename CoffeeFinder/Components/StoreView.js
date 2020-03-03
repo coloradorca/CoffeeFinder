@@ -26,25 +26,25 @@ export default function StoreView({ route }) {
     Linking.openURL(phoneNumber);
   };
 
-  const getDirections = () => {
-    // async function getLocation() {
-    //   await navigator.geolocation.getCurrentPosition(
-    //     (position) => {
-    //       // console.log(position.coords);
-    //       updateLocation({
-    //         latitude: position.coords.latitude,
-    //         longitude: position.coords.longitude,
-    //       });
-    //     },
-    //     (error) => console.log(error.message),
-    //     { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
-    //   );
-    // }
-    // getLocation();
-    Linking.openURL(
-      `maps://app?saddr=40.0167109,-105.2816441&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
-      // `maps://app?saddr=${currentLocation.latitude},${currentLocation.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
-    );
+  const getDirections = async () => {
+    function getLocation() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          updateLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+          console.log(position.coords);
+          Linking.openURL(
+            `maps://app?saddr=${position.coords.latitude},${position.coords.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
+          );
+        },
+        (error) => reject(error),
+        { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
+      );
+    }
+
+    getLocation();
   };
   console.log('currentlocation in StoreView', currentLocation);
   return (
@@ -122,8 +122,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width / 1,
     height: Dimensions.get('window').height / 2.2,
     borderRadius: 14,
-    // width: 400,
-    // height: 200,
   },
   imageStyle: {
     borderRadius: 10,
