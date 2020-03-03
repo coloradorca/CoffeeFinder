@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import SearchBar from './SearchBar.js';
 import Shops from './Shops.js';
@@ -16,11 +17,11 @@ import yelpKey from '../keys.js';
 export default function HomeScreen({ navigation }) {
   const [stores, setStores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentLocation, updateLocation] = useState('Lyons');
+  const [currentLocation, updateLocation] = useState('Portland');
 
   const changeLocation = (event) => {
-    // updateLocation(event);
-    console.log(event);
+    updateLocation(event);
+    // console.log(event);
   };
 
   useEffect(() => {
@@ -44,12 +45,15 @@ export default function HomeScreen({ navigation }) {
 
   return isLoading ? (
     <View style={styles.container}>
-      <Text style={styles.header}>Loading</Text>
+      <ActivityIndicator size='large' color='#0000ff' />
     </View>
   ) : (
     <View style={styles.container}>
       <Text style={styles.header}>Coffee Finder</Text>
-      <SearchBar changeLocation={changeLocation} />
+      <SearchBar
+        changeLocation={changeLocation}
+        currentLocation={currentLocation}
+      />
       <Shops stores={stores} navigation={navigation} />
     </View>
   );
