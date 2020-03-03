@@ -8,14 +8,19 @@ import {
   Dimensions,
   TouchableOpacity,
   Linking,
+  ActivityIndicator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import axios from 'axios';
+import yelpKey from '../keys.js';
 // import GestureRecognizer, {
 //   swipeDirections,
 // } from 'react-native-swipe-gestures';
 
 export default function StoreView({ route }) {
   const [currentLocation, updateLocation] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [markers, updateMarkers] = useState({});
   const makeCall = () => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
@@ -25,6 +30,28 @@ export default function StoreView({ route }) {
     }
     Linking.openURL(phoneNumber);
   };
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const fetch = await axios.get(
+        `https://api.yelp.com/v3/businesses/search?location=${currentLocation}&categories=coffee&tea`,
+        {
+          headers: {
+            Authorization: yelpKey,
+          },
+        },
+      );
+      const response = await fetch;
+      response.data.businesses.map((e) => {
+        updateMarkers({
+          lat: e.coordinates.latitude,
+          long: e.coordinates.longitude,
+        });
+      });
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
 
   const getDirections = () => {
     function getLocation() {
@@ -34,10 +61,15 @@ export default function StoreView({ route }) {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
-
-          Linking.openURL(
-            `maps://app?saddr=${position.coords.latitude},${position.coords.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
-          );
+          if (Platform.OS === 'android') {
+            Linking.openURL(
+              `google.navigation:q=${position.coords.latitude},${position.coords.longitude}`,
+            );
+          } else {
+            Linking.openURL(
+              `maps://app?saddr=${position.coords.latitude},${position.coords.longitude}&daddr=${route.params.shop.coordinates.latitude},${route.params.shop.coordinates.longitude}`,
+            );
+          }
         },
         (error) => reject(error),
         { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
@@ -45,8 +77,12 @@ export default function StoreView({ route }) {
     }
     getLocation();
   };
-
-  return (
+  console.log(markers);
+  return isLoading ? (
+    <View style={styles.container}>
+      <ActivityIndicator size='large' color='#0000ff' />
+    </View>
+  ) : (
     <SafeAreaView style={styles.container}>
       <Text style={styles.nameStyle}>{route.params.shop.name}</Text>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -136,3 +172,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+/* <MapView.Marker
+            coordinate={{
+              latitude: route.params.shop.coordinates.latitude,
+              longitude: route.params.shop.coordinates.longitude,
+            }}
+            title={route.params.shop.name}
+            onPress={() => getDirections()}
+          /> */
