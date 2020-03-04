@@ -10,6 +10,6 @@ Linking enabled to: allow a user to directly call the business and open up devic
 
 (Using Yelp's API)
 
-![Home Screen ](../CoffeeFinder/assets/HomeScreen.png)
+![Home Screen ](./CoffeeFinder/assets/HomeScreen.png)
 
-![Store Screen](../CoffeeFinder/assets/StoreScreen.png)
+![Store Screen](./CoffeeFinder/assets/StoreScreen.png)
