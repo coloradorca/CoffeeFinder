@@ -68,10 +68,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
+    fontFamily: 'Futura',
     margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
     fontSize: 40,
+    color: '#36577A',
   },
 });

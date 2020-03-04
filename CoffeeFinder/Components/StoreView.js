@@ -13,12 +13,9 @@ import {
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
 import yelpKey from '../keys.js';
-// import GestureRecognizer, {
-//   swipeDirections,
-// } from 'react-native-swipe-gestures';
 
 export default function StoreView({ route }) {
-  const [currentLocation, updateLocation] = useState({});
+  const [currentLocation, updateLocation] = useState('Boulder');
   const [isLoading, setIsLoading] = useState(false);
   const [markers, updateMarkers] = useState([
     {
@@ -28,16 +25,6 @@ export default function StoreView({ route }) {
       },
     },
   ]);
-
-  const makeCall = () => {
-    let phoneNumber = '';
-    if (Platform.OS === 'android') {
-      phoneNumber = `tel:${route.params.shop.display_phone}`;
-    } else {
-      phoneNumber = `telprompt:${route.params.shop.display_phone}`;
-    }
-    Linking.openURL(phoneNumber);
-  };
 
   useEffect(() => {
     async function fetchData() {
@@ -68,6 +55,16 @@ export default function StoreView({ route }) {
     fetchData();
   }, []);
 
+  const makeCall = () => {
+    let phoneNumber = '';
+    if (Platform.OS === 'android') {
+      phoneNumber = `tel:${route.params.shop.display_phone}`;
+    } else {
+      phoneNumber = `telprompt:${route.params.shop.display_phone}`;
+    }
+    Linking.openURL(phoneNumber);
+  };
+
   const getDirections = () => {
     function getLocation() {
       navigator.geolocation.getCurrentPosition(
@@ -86,12 +83,13 @@ export default function StoreView({ route }) {
             );
           }
         },
-        (error) => reject(error),
+        (error) => console.log(error),
         { enableHighAccuracy: true, timeout: 2000, maximumAge: 1000 },
       );
     }
     getLocation();
   };
+
   return isLoading ? (
     <View style={styles.container}>
       <ActivityIndicator size='large' color='#0000ff' />
@@ -124,16 +122,14 @@ export default function StoreView({ route }) {
             latitudeDelta: 0.014,
             longitudeDelta: 0.015,
           }}>
-          {markers.map((e, index) => {
-            return (
-              <MapView.Marker
-                key={index}
-                coordinate={e.coordinates}
-                title={e.title}>
-                <View style={styles.markerStyle}></View>
-              </MapView.Marker>
-            );
-          })}
+          {markers.map((e, index) => (
+            <MapView.Marker
+              key={index}
+              coordinate={e.coordinates}
+              title={e.title}>
+              <View style={styles.markerStyle}></View>
+            </MapView.Marker>
+          ))}
           <MapView.Marker
             coordinate={{
               latitude: route.params.shop.coordinates.latitude,
@@ -159,23 +155,26 @@ const styles = StyleSheet.create({
   address: {
     fontWeight: 'bold',
     fontSize: 15,
-    color: 'black',
+    color: '#70B5FF',
     margin: 6,
   },
   phone: {
+    fontFamily: 'Futura',
     textAlign: 'center',
     width: '80%',
-    padding: 5,
+    margin: 3,
     fontSize: 20,
     color: 'blue',
     alignItems: 'center',
     justifyContent: 'center',
   },
   nameStyle: {
+    fontFamily: 'Futura',
     margin: 8,
     textAlign: 'center',
     fontSize: 30,
-    color: 'purple',
+    color: '#36577A',
+    fontWeight: 'bold',
   },
   mapStyle: {
     width: Dimensions.get('window').width / 1,
@@ -188,6 +187,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   textStyle: {
+    fontFamily: 'Futura',
     textAlign: 'center',
     color: 'black',
     alignItems: 'center',
@@ -196,9 +196,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   markerStyle: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 15,
     borderRadius: 10,
-    backgroundColor: 'rgba(130,4,150, 0.9)',
+    backgroundColor: '#639FE0',
   },
 });
