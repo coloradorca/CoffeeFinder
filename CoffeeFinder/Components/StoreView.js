@@ -20,7 +20,15 @@ import yelpKey from '../keys.js';
 export default function StoreView({ route }) {
   const [currentLocation, updateLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [markers, updateMarkers] = useState({});
+  const [markers, updateMarkers] = useState([
+    {
+      coordinates: {
+        latitude: route.params.shop.coordinates.latitude,
+        longitude: route.params.shop.coordinates.longitude,
+      },
+    },
+  ]);
+
   const makeCall = () => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
@@ -30,11 +38,12 @@ export default function StoreView({ route }) {
     }
     Linking.openURL(phoneNumber);
   };
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       const fetch = await axios.get(
-        `https://api.yelp.com/v3/businesses/search?location=${currentLocation}&categories=coffee&tea`,
+        `https://api.yelp.com/v3/businesses/search?location=${route.params.shop.name}&categories=coffee&tea`,
         {
           headers: {
             Authorization: yelpKey,
@@ -42,12 +51,18 @@ export default function StoreView({ route }) {
         },
       );
       const response = await fetch;
-      response.data.businesses.map((e) => {
-        updateMarkers({
-          lat: e.coordinates.latitude,
-          long: e.coordinates.longitude,
-        });
-      });
+      response.data.businesses.map((e) =>
+        updateMarkers((markers) => [
+          ...markers,
+          {
+            title: e.name,
+            coordinates: {
+              latitude: e.coordinates.latitude,
+              longitude: e.coordinates.longitude,
+            },
+          },
+        ]),
+      );
       setIsLoading(false);
     }
     fetchData();
@@ -77,7 +92,6 @@ export default function StoreView({ route }) {
     }
     getLocation();
   };
-  console.log(markers);
   return isLoading ? (
     <View style={styles.container}>
       <ActivityIndicator size='large' color='#0000ff' />
@@ -107,9 +121,19 @@ export default function StoreView({ route }) {
           region={{
             latitude: route.params.shop.coordinates.latitude,
             longitude: route.params.shop.coordinates.longitude,
-            latitudeDelta: 0.004,
-            longitudeDelta: 0.005,
+            latitudeDelta: 0.014,
+            longitudeDelta: 0.015,
           }}>
+          {markers.map((e, index) => {
+            return (
+              <MapView.Marker
+                key={index}
+                coordinate={e.coordinates}
+                title={e.title}>
+                <View style={styles.markerStyle}></View>
+              </MapView.Marker>
+            );
+          })}
           <MapView.Marker
             coordinate={{
               latitude: route.params.shop.coordinates.latitude,
@@ -171,12 +195,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  markerStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(130,4,150, 0.9)',
+  },
 });
-/* <MapView.Marker
-            coordinate={{
-              latitude: route.params.shop.coordinates.latitude,
-              longitude: route.params.shop.coordinates.longitude,
-            }}
-            title={route.params.shop.name}
-            onPress={() => getDirections()}
-          /> */

@@ -54,7 +54,7 @@ export default function HomeScreen({ navigation }) {
           changeLocation={changeLocation}
           currentLocation={currentLocation}
         />
-        <Shops markers={markers} stores={stores} navigation={navigation} />
+        <Shops stores={stores} navigation={navigation} />
       </View>
     </ScrollView>
   );
