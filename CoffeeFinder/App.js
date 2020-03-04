@@ -14,8 +14,36 @@ export default class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='Coffee Finder' component={HomeScreen} />
-          <Stack.Screen name='Coffee Shop' component={StoreView} />
+          <Stack.Screen
+            name='Coffee Finder'
+            component={HomeScreen}
+            options={{
+              title: 'Coffee Finder',
+              headerStyle: {
+                backgroundColor: '#65A3E6',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontFamily: 'Futura',
+              },
+            }}
+          />
+          <Stack.Screen
+            name='Coffee Shop'
+            component={StoreView}
+            options={{
+              title: 'Coffee Shop',
+              headerStyle: {
+                backgroundColor: '#65A3E6',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontFamily: 'Futura',
+              },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

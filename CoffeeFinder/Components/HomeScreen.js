@@ -17,7 +17,7 @@ import yelpKey from '../keys.js';
 export default function HomeScreen({ navigation }) {
   const [stores, setStores] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentLocation, updateLocation] = useState('Boulder');
+  const [currentLocation, updateLocation] = useState('San Francisco');
 
   const changeLocation = (event) => {
     updateLocation(event);
@@ -49,7 +49,6 @@ export default function HomeScreen({ navigation }) {
   ) : (
     <ScrollView>
       <View style={styles.header}>
-        <Text style={styles.header}>Coffee Finder</Text>
         <SearchBar
           changeLocation={changeLocation}
           currentLocation={currentLocation}

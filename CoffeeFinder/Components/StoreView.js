@@ -15,7 +15,7 @@ import axios from 'axios';
 import yelpKey from '../keys.js';
 
 export default function StoreView({ route }) {
-  const [currentLocation, updateLocation] = useState('Boulder');
+  const [currentLocation, updateLocation] = useState(route.params.shop.name);
   const [isLoading, setIsLoading] = useState(false);
   const [markers, updateMarkers] = useState([
     {
@@ -30,7 +30,7 @@ export default function StoreView({ route }) {
     async function fetchData() {
       setIsLoading(true);
       const fetch = await axios.get(
-        `https://api.yelp.com/v3/businesses/search?location=${route.params.shop.name}&categories=coffee&tea`,
+        `https://api.yelp.com/v3/businesses/search?location=${currentLocation}&categories=coffee&tea`,
         {
           headers: {
             Authorization: yelpKey,

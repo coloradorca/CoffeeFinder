@@ -20,14 +20,7 @@ export default function Shops(props) {
             key={id}
             style={styles.image}
             imageStyle={{ borderRadius: 10 }}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'stretch',
-                backgroundColor: 'rgba(0,0,0,0,.5)',
-              }}>
+            <View style={styles.imageText}>
               <Text
                 style={[styles.inlay, { backgroundColor: 'transparent' }]}
                 key={id}>
@@ -66,9 +59,14 @@ const styles = StyleSheet.create({
     height: 90,
     margin: 8,
   },
+  imageText: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
   inlay: {
-    textShadowColor: '#5284BA',
-    // textShadowOffset: { width: 5, height: 5 },
+    textShadowColor: '#385B80',
     fontFamily: 'Futura',
     textAlign: 'center',
     color: 'white',
@@ -76,7 +74,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontSize: 24,
     fontWeight: 'bold',
-    // textShadowColor: 'purple',
     textShadowOffset: { width: 3, height: 3 },
     textShadowRadius: 5,
   },
