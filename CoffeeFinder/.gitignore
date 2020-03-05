@@ -13,3 +13,4 @@ keys.js
 # macOS
 .DS_Store
 *.env
+android.js
