@@ -11,8 +11,13 @@ Linking enabled to: allow a user to directly call the business and open up devic
 ![Home Screen ](./CoffeeFinder/assets/HomeScreen1.png) ![Store Screen](./CoffeeFinder/assets/StoreScreen1.png)
 
 Installation
+
 fork and clone the repo
+
 obtain a yelp fusion api key
+
 update keys.example.js with yelpKey
+
 npm install
+
 npm run ios
