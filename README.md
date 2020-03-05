@@ -1,4 +1,4 @@
-COFFEE FINDER
+# COFFEE FINDER
 
 Users can enter a location and app will search for businesses that serve coffee
 
@@ -10,7 +10,7 @@ Linking enabled to: allow a user to directly call the business and open up devic
 
 ![Home Screen ](./CoffeeFinder/assets/HomeScreen1.png) ![Store Screen](./CoffeeFinder/assets/StoreScreen1.png)
 
-Installation
+# Installation
 
 fork and clone the repo
 
