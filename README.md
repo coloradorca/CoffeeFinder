@@ -14,18 +14,18 @@ Linking enabled to: allow a user to directly call the business and open up devic
 
 iOS simulator
 
+expo cli (npm install expo-cli)
+
 # Installation
 
 clone the repo
+
+\$cd CoffeeFinder
 
 npm install
 
 obtain a [yelp fusion api key](https://www.yelp.com/fusion)
 
 update keys.example.js with `yelpKey = 'Bearer (your api key)'`
-
-install expo cli(npm install -g expo-cli)
-
-\$cd CoffeeFinder
 
 npm run ios
