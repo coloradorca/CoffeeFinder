@@ -20,4 +20,6 @@ update keys.example.js with yelpKey
 
 npm install
 
+create an expo account
+
 npm run ios
