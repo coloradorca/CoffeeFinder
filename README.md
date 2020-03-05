@@ -10,16 +10,20 @@ Linking enabled to: allow a user to directly call the business and open up devic
 
 ![Home Screen ](./CoffeeFinder/assets/HomeScreen1.png) ![Store Screen](./CoffeeFinder/assets/StoreScreen1.png)
 
+## Dependencies
+
+iOS simulator
+
 # Installation
 
-fork and clone the repo
-
-obtain a yelp fusion api key
-
-update keys.example.js with yelpKey
+clone the repo
 
 npm install
 
-create an expo account
+obtain a yelp fusion api key [a link](https://www.yelp.com/fusion)
+
+update keys.example.js with `yelpKey = 'Bearer (your api key)'`
+
+install expo cli(npm install -g expo-cli)
 
 npm run ios
