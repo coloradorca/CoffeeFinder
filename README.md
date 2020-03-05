@@ -20,10 +20,12 @@ clone the repo
 
 npm install
 
-obtain a yelp fusion api key [a link](https://www.yelp.com/fusion)
+obtain a [yelp fusion api key](https://www.yelp.com/fusion)
 
 update keys.example.js with `yelpKey = 'Bearer (your api key)'`
 
 install expo cli(npm install -g expo-cli)
+
+\$cd CoffeeFinder
 
 npm run ios
