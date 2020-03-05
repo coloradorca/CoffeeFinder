@@ -10,11 +10,21 @@ Linking enabled to: allow a user to directly call the business and open up devic
 
 ![Home Screen ](./CoffeeFinder/assets/HomeScreen1.png) ![Store Screen](./CoffeeFinder/assets/StoreScreen1.png)
 
+## Experience
+
+Best Accessed on a mobile device with iOS
+
+Install Expo App from AppStore
+
+![this link will work on mobile](exp://exp.host/@gonzalrm/CoffeeFinder)
+
 ## Dependencies
 
 iOS simulator
 
-expo cli (npm install expo-cli)
+node.js
+
+expo cli `npm install -g expo-cli` verify by running `expo whoami`
 
 # Installation
 
