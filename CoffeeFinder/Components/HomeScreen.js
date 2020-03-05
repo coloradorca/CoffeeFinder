@@ -12,7 +12,7 @@ import SearchBar from './SearchBar.js';
 import Shops from './Shops.js';
 import StoreView from './StoreView.js';
 import axios from 'axios';
-import yelpKey from '../keys.js';
+import yelpKey from '../keys.example.js';
 
 export default function HomeScreen({ navigation }) {
   const [stores, setStores] = useState([]);

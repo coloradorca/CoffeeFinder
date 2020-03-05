@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
-import yelpKey from '../keys.js';
+import yelpKey from '../keys.example.js';
 
 export default function StoreView({ route }) {
   const [currentLocation, updateLocation] = useState(route.params.shop.name);
