@@ -30,12 +30,12 @@ expo cli `npm install -g expo-cli` verify by running `expo whoami`
 
 clone the repo - https://github.com/coloradorca/CoffeeFinder.git
 
-\$ cd CoffeeFinder
+\$ `cd CoffeeFinder`
 
-npm install
+`npm install`
 
 obtain a [yelp fusion api key](https://www.yelp.com/fusion)
 
 update keys.example.js with `yelpKey = 'Bearer (your api key)'`
 
-npm run ios
+`npm run ios`
