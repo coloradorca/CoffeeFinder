@@ -1,3 +1,4 @@
-const yelpKey = 'Bearer ';
+const yelpKey =
+ ;
 
 module.exports = yelpKey;
